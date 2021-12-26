@@ -51,6 +51,7 @@ function ReloadConfirm(props) {
             <div className={'buttons'}>
                 <div onClick={() => {
                     props.startSession();
+                    props.setOpenReloadConfirm(false);
                 }}>确认</div>
                 <div onClick={() => props.setOpenReloadConfirm(false)}>取消</div>
             </div>

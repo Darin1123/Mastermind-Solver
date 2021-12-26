@@ -52,6 +52,8 @@ export default function Guess(props) {
         })
     }
 
+    console.log(props.data);
+
     return (
         <div className={'guess'}>
             <div className={'guess-num'}>

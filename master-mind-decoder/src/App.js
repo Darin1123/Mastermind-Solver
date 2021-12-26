@@ -2,93 +2,105 @@ import './App.scss';
 import {useEffect, useState} from "react";
 import Guess from "./Guess";
 import axios from "axios";
-import IconRefresh from "./resources/icon/refresh";
 import Menu from "./Menu";
+import React from "react";
 
-function App() {
-    let initialGuess = [];
-    for (let i = 0; i < 8; i++) {
-        initialGuess.push(['', '', '', '']);
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        let initialHistory = [];
+        for (let i = 0; i < 8; i++) {
+            initialHistory.push(['', '', '', '']);
+        }
+        this.state = {
+            history: initialHistory,
+            COLOR_SET: ['blue', 'red', 'green', 'yellow', 'pink', 'white'],
+            current: 0,
+            sessionOn: false,
+            message: "请小心地输入游戏中给出的结果吧.",
+            out: false
+        };
     }
-    const [history, setHistory] = useState(initialGuess);
-    const COLOR_SET = ['blue', 'red', 'green', 'yellow', 'pink', 'white'];
-    const [current, setCurrent] = useState(0);
-    const [sessionOn, setSessionOn] = useState(false);
-    const [message, setMessage] = useState("请小心地输入游戏中给出的结果吧.");
-    const [out, setOut] = useState(false);
 
-    function setHistoryItem(data, position) {
-        history[position] = data;
-        setHistory(history);
+    setCurrent = (v) => {
+        this.setState({current: v});
     }
 
-    useEffect(() => {
-        document.title = 'Mastermind Solver'
-    }, []);
+    setHistoryItem = async (data, position) => {
+        const updateHistory = this.state.history.map((item, key) => key === position ? data : item)
+        this.setState({history: updateHistory});
+    }
 
-    async function startSession() {
+    startSession = async () => {
         let initial = [];
         for (let i = 0; i < 8; i++) {
             initial.push(['', '', '', '']);
         }
-        console.log(initial)
-        await setHistory(initial);
-        await setCurrent(0);
-        await setOut(false);
-        await setMessage("请小心地输入游戏中给出的结果吧.")
+        await this.setState({
+            history: initial,
+            current: 0,
+            out: false,
+            message: "请小心地输入游戏中给出的结果吧."
+        });
         axios({
             method: 'GET',
             url: '/api/start'
         }).then(async response => {
             if (response.data.code === 0) {
-                await setHistoryItem(response.data.data, current);
-                setSessionOn(true);
+                await this.setHistoryItem(response.data.data, this.state.current);
+                this.setState({sessionOn: true})
             } else {
-                setMessage(`发生了错误: ${response.data.message}.`);
+                this.setState({message: `发生了错误: ${response.data.message}.`});
             }
         }).catch(error => {
-            setMessage(`发生了错误: ${error}.`);
+            this.setState({message: `发生了错误: ${error}.`});
         });
 
     }
 
+    render()
+{
     return (
         <div className="App">
             <div className={'bg-img'}/>
-            {!sessionOn &&
+            {!this.state.sessionOn &&
                 <div className={'welcome'}>
                     <div className={'container'}>
                         <span className={'title'}>欢迎使用"<span style={{color: 'red'}}>猜</span><span
                             style={{color: 'green'}}>颜</span><span style={{color: 'blue'}}>色</span>"助手!</span>
-                        <div className={'button'} onClick={() => startSession()}>开始!</div>
+                        <div className={'button'}
+                             onClick={() => this.startSession()}>
+                            开始!
+                        </div>
                     </div>
                 </div>}
 
-            {sessionOn &&
+            {this.state.sessionOn &&
                 <div className={'message'}>
-                    {message}
+                    {this.state.message}
                 </div>}
 
-            {sessionOn &&
+            {this.state.sessionOn &&
                 <div className={'main'}>
                     <div className={'guesses'}>
-                        {history.map((item, key) =>
+                        {this.state.history.map((item, key) =>
                             <Guess key={key}
-                                   out={out}
-                                   setOut={setOut}
-                                   setMessage={setMessage}
-                                   COLOR_SET={COLOR_SET}
-                                   current={current}
+                                   out={this.state.out}
+                                   setOut={this.state.setOut}
+                                   setMessage={this.setMessage}
+                                   COLOR_SET={this.state.COLOR_SET}
+                                   current={this.state.current}
                                    data={item}
-                                   setCurrent={setCurrent}
-                                   setHistoryItem={setHistoryItem}
+                                   setCurrent={this.setCurrent}
+                                   setHistoryItem={this.setHistoryItem}
                                    index={key}/>)}
                     </div>
                 </div>}
-            {sessionOn &&
-                <Menu startSession={startSession}/>}
+            {this.state.sessionOn &&
+                <Menu startSession={this.startSession}/>}
         </div>
     );
+}
 }
 
 export default App;
