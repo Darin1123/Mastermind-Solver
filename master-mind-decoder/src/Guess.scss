@@ -1,0 +1,375 @@
+.guess {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 20px;
+
+  &:nth-last-child(1) {
+    margin-right: 0;
+  }
+
+  /* Chrome, Safari, Edge, Opera */
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+
+  /* Firefox */
+  input[type=number] {
+    -moz-appearance: textfield;
+  }
+
+  .guess-num {
+    color: #bbb;
+    font-size: 48px;
+    margin-bottom: 10px;
+    font-family: cursive;
+  }
+
+  .guess-main {
+    border: 4px solid #888;
+    background-color: #555;
+    border-radius: 10px;
+    padding: 20px 10px;
+
+    .hole {
+      position: relative;
+      width: 30px;
+      height: 30px;
+      background-color: #000;
+      border: 4px solid #777;
+      border-radius: 50%;
+      //cursor: pointer;
+      margin-top: 10px;
+      &:nth-child(1) {
+        margin-top: 0;
+      }
+      z-index: 5;
+    }
+
+    .spot {
+      &::before {
+        content: '';
+        position: absolute;
+        height: 6px;
+        width: 6px;
+        background-color: #fff;
+        border-radius: 50%;
+        left: 5px;
+        top: 8px;
+        box-shadow: 0 0 10px rgba(0,0,0, 0.3);
+      }
+      &::after {
+        content: '';
+        position: absolute;
+        height: 4px;
+        width: 4px;
+        background-color: #fff;
+        border-radius: 50%;
+        left: 10px;
+        top: 3px;
+        box-shadow: 0 0 10px rgba(0,0,0, 0.3);
+      }
+    }
+
+    .blue {
+      background: #36c;
+      background:
+              linear-gradient(115deg, transparent 75%, rgba(255,255,255,.4) 75%) 0 0,
+              linear-gradient(245deg, transparent 75%, rgba(255,255,255,.4) 75%) 0 0,
+              linear-gradient(115deg, transparent 75%, rgba(255,255,255,.4) 75%) 5px -10px,
+              linear-gradient(245deg, transparent 75%, rgba(255,255,255,.4) 75%) 5px -10px,
+              #36c;
+      background-size: 10px 20px;
+    }
+
+    .red {
+      background:
+              linear-gradient(63deg, #f22 23%, transparent 23%) 7px 0,
+              linear-gradient(63deg, transparent 74%, #b00 78%),
+              linear-gradient(63deg, transparent 34%, #822 38%, #b44 58%, transparent 62%),
+              #f00;
+      background-size: 16px 48px;
+    }
+
+    .green {
+      background:
+              linear-gradient(135deg, #8f8 25%, transparent 25%) -4px 0,
+              linear-gradient(225deg, #8f8 25%, transparent 25%) -4px 0,
+              linear-gradient(315deg, #8f8 25%, transparent 25%),
+              linear-gradient(45deg, #8f8 25%, transparent 25%);
+      background-size: 10px 10px;
+      background-color: green;
+    }
+
+    .yellow {
+      background-color: yellow;
+      background-image:
+              repeating-linear-gradient(120deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+              repeating-linear-gradient(60deg, rgba(255,255,255,.1), rgba(255,255,255,.1) 1px, transparent 1px, transparent 60px),
+              linear-gradient(60deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1)),
+              linear-gradient(120deg, rgba(0,0,0,.1) 25%, transparent 25%, transparent 75%, rgba(0,0,0,.1) 75%, rgba(0,0,0,.1));
+      background-size: 7px 12px;
+    }
+
+    .pink {
+      background-color: rgb(250, 147, 185);
+      background-image: linear-gradient(90deg, rgba(255, 189, 213,.5) 50%, transparent 50%),
+      linear-gradient(rgba(255, 189, 213, .5) 50%, transparent 50%);
+      background-size: 8px 8px;
+    }
+
+    .white {
+      background:
+              radial-gradient(#ddd 15%, transparent 16%) 0 0,
+              radial-gradient(#ddd 15%, transparent 16%) 8px 8px,
+              radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 0 1px,
+              radial-gradient(rgba(255,255,255,.1) 15%, transparent 20%) 8px 9px;
+      background-color: #fff;
+      background-size:16px 16px;
+    }
+  }
+
+  .result-input {
+    margin-top: 10px;
+
+    .full {
+      position: relative;
+      color: rgb(255, 128, 0);
+
+      .full-menu {
+        position: absolute;
+        display: flex;
+        z-index: 4;
+        background-color: #fff;
+        padding: 20px;
+        top: 100%;
+        border-radius: 20px;
+
+        .option {
+          background-color: rgb(255, 128, 0);
+          outline: none;
+          border-radius: 5px;
+          width: 32px;
+          height: 32px;
+          font-weight: bold;
+          color: #fff;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 10px;
+          cursor: pointer;
+          font-size: 14px;
+          text-align: center;
+          border-left: 4px solid rgb(255, 188, 140);
+          border-top: 4px solid rgb(255, 188, 140);
+          border-bottom: 4px solid rgb(205, 88, 0);
+          border-right: 4px solid rgb(205, 88, 0);
+
+          &:nth-last-child(1) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .half {
+      position: relative;
+      color: #ddd;
+
+      .half-menu {
+        position: absolute;
+        display: flex;
+        z-index: 4;
+        background-color: #fff;
+        padding: 20px;
+        top: 100%;
+        border-radius: 20px;
+
+        .option {
+          border-radius: 5px;
+          background-color: #fff;
+          outline: none;
+          width: 32px;
+          height: 32px;
+          font-weight: bold;
+          color: #444;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          margin-right: 10px;
+          cursor: pointer;
+          font-size: 14px;
+          text-align: center;
+          border-left: 4px solid #fff;
+          border-top: 4px solid #fff;
+          border-bottom: 4px solid #888;
+          border-right: 4px solid #888;
+
+          &:nth-last-child(1) {
+            margin-right: 0;
+          }
+        }
+      }
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+      span {
+        font-size: 12px;
+        margin-right: 5px;
+      }
+
+      input {
+        display: block;
+        width: 20px;
+        background-color: #666;
+        outline: none;
+        border-radius: 5px;
+        padding: 4px;
+        text-align: center;
+      }
+
+      .full-button {
+        width: 20px;
+        background-color: rgb(255, 128, 0);
+        outline: none;
+        border-radius: 5px;
+        padding: 4px;
+        font-weight: bold;
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        border-left: 4px solid rgb(255, 188, 140);
+        border-top: 4px solid rgb(255, 188, 140);
+        border-bottom: 4px solid rgb(205, 88, 0);
+        border-right: 4px solid rgb(205, 88, 0);
+      }
+
+      .half-button {
+        width: 20px;
+        background-color: #fff;
+        outline: none;
+        border-radius: 5px;
+        padding: 4px;
+        font-weight: bold;
+        color: #444;
+        cursor: pointer;
+        font-size: 14px;
+        text-align: center;
+        border-left: 4px solid #fff;
+        border-top: 4px solid #fff;
+        border-bottom: 4px solid #888;
+        border-right: 4px solid #888;
+      }
+    }
+
+    .confirm {
+      cursor: pointer;
+      background-color: rgb(45, 151, 75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      border-left: 4px solid rgb(85, 191, 115);
+      border-top: 4px solid rgb(85, 191, 115);
+      border-bottom: 4px solid rgb(0, 61, 25);
+      border-right: 4px solid rgb(0, 61, 25);
+    }
+
+    .out {
+      cursor: not-allowed;
+      background-color: rgb(207, 33, 46);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      border-left: 4px solid rgb(255, 100, 100);
+      border-top: 4px solid rgb(255, 100, 100);
+      border-bottom: 4px solid rgb(100, 33, 46);
+      border-right: 4px solid rgb(100, 33, 46);
+    }
+
+  }
+
+  .result-history {
+    margin-top: 10px;
+
+    .full {
+      color: rgb(255, 128, 0);
+    }
+
+    .half {
+      color: #ddd;
+    }
+
+    .input-container {
+      display: flex;
+      align-items: center;
+      margin-bottom: 10px;
+
+
+      span {
+        font-size: 12px;
+        margin-right: 5px;
+      }
+
+      .history-full {
+        width: 20px;
+        background-color: rgb(255, 128, 0);
+        outline: none;
+        border-radius: 5px;
+        padding: 4px;
+        font-weight: bold;
+        color: #fff;
+        font-size: 14px;
+        text-align: center;
+        border-left: 4px solid rgb(255, 188, 140);
+        border-top: 4px solid rgb(255, 188, 140);
+        border-bottom: 4px solid rgb(205, 88, 0);
+        border-right: 4px solid rgb(205, 88, 0);
+      }
+
+      .history-half {
+        width: 20px;
+        background-color: #fff;
+        outline: none;
+        border-radius: 5px;
+        padding: 4px;
+        font-weight: bold;
+        color: #444;
+        font-size: 14px;
+        text-align: center;
+        border-left: 4px solid #fff;
+        border-top: 4px solid #fff;
+        border-bottom: 4px solid #888;
+        border-right: 4px solid #888;
+      }
+    }
+
+    .confirm {
+      cursor: pointer;
+      background-color: rgb(45, 151, 75);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      padding: 10px;
+      border-radius: 10px;
+      border-left: 4px solid rgb(85, 191, 115);
+      border-top: 4px solid rgb(85, 191, 115);
+      border-bottom: 4px solid rgb(0, 61, 25);
+      border-right: 4px solid rgb(0, 61, 25);
+    }
+
+  }
+}

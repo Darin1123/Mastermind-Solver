@@ -1,0 +1,44 @@
+.menu {
+  background-color: #444;
+  padding: 20px;
+  margin-top: 20px;
+  border-radius: 20px;
+  border-bottom: 4px solid #222;
+  border-right: 4px solid #222;
+  border-top: 4px solid #888;
+  border-left: 4px solid #888;
+
+  svg {
+    color: #fff;
+    cursor: pointer;
+  }
+
+  .reload-confirm {
+    position: absolute;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 20px;
+
+    .buttons {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 10px;
+
+      * {
+        width: calc(50% - 13px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 0;
+        cursor: pointer;
+        background-color: rgb(45, 151, 75);
+        color: #fff;
+        border-radius: 10px;
+        border-left: 4px solid rgb(85, 191, 115);
+        border-top: 4px solid rgb(85, 191, 115);
+        border-bottom: 4px solid rgb(0, 61, 25);
+        border-right: 4px solid rgb(0, 61, 25);
+      }
+    }
+  }
+}
