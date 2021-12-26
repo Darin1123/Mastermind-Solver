@@ -26,6 +26,14 @@ class App extends React.Component {
         this.setState({current: v});
     }
 
+    setMessage = (v) => {
+        this.setState({message: v});
+    }
+
+    setOut = (v) => {
+        this.setState({out: v});
+    }
+
     setHistoryItem = async (data, position) => {
         const updateHistory = this.state.history.map((item, key) => key === position ? data : item)
         this.setState({history: updateHistory});
@@ -55,52 +63,54 @@ class App extends React.Component {
         }).catch(error => {
             this.setState({message: `发生了错误: ${error}.`});
         });
-
     }
 
-    render()
-{
-    return (
-        <div className="App">
-            <div className={'bg-img'}/>
-            {!this.state.sessionOn &&
-                <div className={'welcome'}>
-                    <div className={'container'}>
+    componentDidMount() {
+        document.title = "猜颜色助手";
+    }
+
+    render() {
+        return (
+            <div className="App">
+                <div className={'bg-img'}/>
+                {!this.state.sessionOn &&
+                    <div className={'welcome'}>
+                        <div className={'container'}>
                         <span className={'title'}>欢迎使用"<span style={{color: 'red'}}>猜</span><span
                             style={{color: 'green'}}>颜</span><span style={{color: 'blue'}}>色</span>"助手!</span>
-                        <div className={'button'}
-                             onClick={() => this.startSession()}>
-                            开始!
+                            <div className={'button'}
+                                 onClick={() => this.startSession()}>
+                                开始!
+                            </div>
                         </div>
-                    </div>
-                </div>}
+                    </div>}
 
-            {this.state.sessionOn &&
-                <div className={'message'}>
-                    {this.state.message}
-                </div>}
+                {this.state.sessionOn &&
+                    <div className={'message'}>
+                        {this.state.message}
+                    </div>}
 
-            {this.state.sessionOn &&
-                <div className={'main'}>
-                    <div className={'guesses'}>
-                        {this.state.history.map((item, key) =>
-                            <Guess key={key}
-                                   out={this.state.out}
-                                   setOut={this.state.setOut}
-                                   setMessage={this.setMessage}
-                                   COLOR_SET={this.state.COLOR_SET}
-                                   current={this.state.current}
-                                   data={item}
-                                   setCurrent={this.setCurrent}
-                                   setHistoryItem={this.setHistoryItem}
-                                   index={key}/>)}
-                    </div>
-                </div>}
-            {this.state.sessionOn &&
-                <Menu startSession={this.startSession}/>}
-        </div>
-    );
-}
+                {this.state.sessionOn &&
+                    <div className={'main'}>
+                        <div className={'guesses'}>
+                            {this.state.history.map((item, key) =>
+                                <Guess key={key}
+                                       out={this.state.out}
+                                       setOut={this.setOut}
+                                       setMessage={this.setMessage}
+                                       COLOR_SET={this.state.COLOR_SET}
+                                       current={this.state.current}
+                                       data={item}
+                                       setCurrent={this.setCurrent}
+                                       setHistoryItem={this.setHistoryItem}
+                                       index={key}/>)}
+                        </div>
+                    </div>}
+                {this.state.sessionOn &&
+                    <Menu startSession={this.startSession}/>}
+            </div>
+        );
+    }
 }
 
 export default App;
