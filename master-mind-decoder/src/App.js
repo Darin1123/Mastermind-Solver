@@ -64,7 +64,8 @@ class App extends React.Component {
             if (response.data.code === 0) {
                 let data = {
                     guess: response.data.data,
-                    full: -1
+                    full: -1,
+                    half: -1
                 }
                 await this.setHistoryItem(data, this.state.current);
                 this.setState({sessionOn: true})

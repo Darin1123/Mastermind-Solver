@@ -4,8 +4,8 @@ import {useEffect, useRef, useState} from "react";
 
 export default function Guess(props) {
 
-    const [full, setFull] = useState(-1);
-    const [half, setHalf] = useState(-1);
+    // const [full, setFull] = useState(-1);
+    // const [half, setHalf] = useState(-1);
     const [openFullMenu, setOpenFullMenu] = useState(false);
     const [openHalfMenu, setOpenHalfMenu] = useState(false);
 
@@ -36,7 +36,8 @@ export default function Guess(props) {
             if (response.data.code === 0) {
                 let data = {
                     guess: response.data.data,
-                    full: -1
+                    full: -1,
+                    half: -1
                 }
                 props.setHistoryItem(data, props.current + 1);
                 props.setCurrent(props.current + 1);
@@ -44,7 +45,8 @@ export default function Guess(props) {
             } else if (response.data.code === 200) {
                 let data = {
                     guess: response.data.data,
-                    full: -1
+                    full: -1,
+                    half: -1
                 }
                 props.setMessage("这次一定对了!");
                 props.setHistoryItem(data, props.current + 1);
@@ -59,6 +61,21 @@ export default function Guess(props) {
         }).catch(e => {
             props.setMessage(`发生了错误: ${e}`);
         })
+    }
+
+    let full = props.data.full;
+    let half = props.data.half;
+
+    function setFull(value) {
+        let data = props.data;
+        data.full = value;
+        props.setHistoryItem(data, props.index);
+    }
+
+    function setHalf(value) {
+        let data = props.data;
+        data.half = value;
+        props.setHistoryItem(data, props.index);
     }
 
     return (
