@@ -1,4 +1,5 @@
 import './Guess.scss';
+import './GuessMobile.scss';
 import axios from "axios";
 import {useEffect, useRef, useState} from "react";
 
@@ -88,31 +89,33 @@ export default function Guess(props) {
             </div>
             {props.index === props.current &&
                 <div className={'result-input'}>
-                    <div className={'input-container full'}>
-                    <span>
-                        全对
-                    </span>
-                    <span className={'full-button'}
-                          onClick={() => setOpenFullMenu(true)}>
-                        {full === -1 ? '?' : full}
-                    </span>
-                        {openFullMenu &&
-                            <FullMenu setOpenFullMenu={setOpenFullMenu}
-                                      setFull={setFull}
-                                      half={half}/>}
-                    </div>
-                    <div className={'input-container half'}>
-                    <span>
-                        半对
-                    </span>
-                    <span className={'half-button'}
-                          onClick={() => setOpenHalfMenu(true)}>
-                        {half === -1 ? '?' : half}
-                    </span>
-                        {openHalfMenu &&
-                            <HalfMenu setOpenHalfMenu={setOpenHalfMenu}
-                                      setHalf={setHalf}
-                                      full={full}/>}
+                    <div className={'inputs'}>
+                        <div className={'input-container full'}>
+                            <span>
+                                全对
+                            </span>
+                                <span className={'full-button'}
+                                      onClick={() => setOpenFullMenu(true)}>
+                                {full === -1 ? '?' : full}
+                            </span>
+                                {openFullMenu &&
+                                    <FullMenu setOpenFullMenu={setOpenFullMenu}
+                                              setFull={setFull}
+                                              half={half}/>}
+                        </div>
+                        <div className={'input-container half'}>
+                            <span>
+                                半对
+                            </span>
+                                <span className={'half-button'}
+                                      onClick={() => setOpenHalfMenu(true)}>
+                                {half === -1 ? '?' : half}
+                            </span>
+                                {openHalfMenu &&
+                                    <HalfMenu setOpenHalfMenu={setOpenHalfMenu}
+                                              setHalf={setHalf}
+                                              full={full}/>}
+                        </div>
                     </div>
                     <div className={`confirm ${props.out ? 'out' : ''}`}
                          onClick={makeGuess}>
@@ -122,17 +125,19 @@ export default function Guess(props) {
 
             {props.index < props.current &&
                 <div className={'result-history'}>
-                    <div className={'input-container full'}>
-                    <span>
-                        全对
-                    </span>
-                        <span className={'history-full'}>{full}</span>
-                    </div>
-                    <div className={'input-container half'}>
-                    <span>
-                        半对
-                    </span>
-                        <span className={'history-half'}>{half}</span>
+                    <div className={'history'}>
+                        <div className={'input-container full'}>
+                        <span>
+                            全对
+                        </span>
+                            <span className={'history-full'}>{full}</span>
+                        </div>
+                        <div className={'input-container half'}>
+                        <span>
+                            半对
+                        </span>
+                            <span className={'history-half'}>{half}</span>
+                        </div>
                     </div>
                 </div>}
         </div>

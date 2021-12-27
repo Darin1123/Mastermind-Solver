@@ -1,0 +1,80 @@
+@media only screen and (max-width: 870px) {
+  .guess {
+    margin-right: 0;
+    flex-direction: row;
+    margin-bottom: 8px;
+    //border: 1px solid red;
+
+    .guess-num {
+      display: none;
+      //margin-bottom: 0;
+      //margin-right: 20px;
+      //width: 32px;
+    }
+
+    .guess-main {
+      display: flex;
+      padding: 8px 16px;
+
+      .hole {
+        margin-top: 0;
+        margin-right: 10px;
+        width: 24px;
+        height: 24px;
+
+        &:nth-last-child(1) {
+          margin-right: 0;
+        }
+      }
+    }
+
+    .result-input {
+      margin-top: 0;
+      margin-left: 20px;
+      margin-bottom: 0;
+
+      .inputs {
+        display: flex;
+
+        .input-container {
+          &:nth-child(1) {
+            margin-right: 10px;
+          }
+
+          .full-button {
+            font-size: 12px;
+            width: 16px;
+          }
+
+          .half-button {
+            font-size: 12px;
+            width: 16px;
+          }
+        }
+      }
+
+      .confirm {
+        font-size: 12px;
+        padding: 5px 0;
+      }
+    }
+
+    .result-history {
+      margin-top: 0;
+      margin-left: 20px;
+      margin-top: 0;
+
+      .history {
+        display: flex;
+
+        .input-container {
+          margin-bottom: 0;
+
+          &:nth-child(1) {
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+}

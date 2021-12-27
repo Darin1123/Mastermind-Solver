@@ -8,18 +8,6 @@
     margin-right: 0;
   }
 
-  /* Chrome, Safari, Edge, Opera */
-  input::-webkit-outer-spin-button,
-  input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-  }
-
-  /* Firefox */
-  input[type=number] {
-    -moz-appearance: textfield;
-  }
-
   .guess-num {
     color: #bbb;
     font-size: 48px;
@@ -224,16 +212,6 @@
         margin-right: 5px;
       }
 
-      input {
-        display: block;
-        width: 20px;
-        background-color: #666;
-        outline: none;
-        border-radius: 5px;
-        padding: 4px;
-        text-align: center;
-      }
-
       .full-button {
         width: 20px;
         background-color: rgb(255, 128, 0);
@@ -373,3 +351,4 @@
 
   }
 }
+
