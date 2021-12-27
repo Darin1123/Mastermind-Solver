@@ -1,4 +1,4 @@
-import IconRefresh from "./resources/icon/refresh";
+import IconRefresh from "../resources/icon/refresh";
 import './Menu.scss';
 import {useEffect, useRef, useState} from "react";
 

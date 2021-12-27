@@ -1,18 +1,22 @@
 import './App.scss';
-import Guess from "./Guess";
+import Guess from "./components/Guess";
 import axios from "axios";
-import Menu from "./Menu";
+import Menu from "./components/Menu";
 import React from "react";
 
 class App extends React.Component {
     constructor(props) {
         super(props);
-        let initialHistory = [];
-        for (let i = 0; i < 8; i++) {
-            initialHistory.push(['', '', '', '']);
-        }
+        // let initialHistory = [];
+        // for (let i = 0; i < 8; i++) {
+        //     initialHistory.push({
+        //         guess: ['', '', '', ''],
+        //         full: -1,
+        //         half: -1
+        //     });
+        // }
         this.state = {
-            history: initialHistory,
+            history: [],
             COLOR_SET: ['blue', 'red', 'green', 'yellow', 'pink', 'white'],
             current: 0,
             sessionOn: false,
@@ -39,12 +43,16 @@ class App extends React.Component {
     }
 
     startSession = async () => {
-        let initial = [];
+        let initialHistory = [];
         for (let i = 0; i < 8; i++) {
-            initial.push(['', '', '', '']);
+            initialHistory.push({
+                guess: ['', '', '', ''],
+                full: -1,
+                half: -1
+            });
         }
         await this.setState({
-            history: initial,
+            history: initialHistory,
             current: 0,
             out: false,
             message: "请小心地输入游戏中给出的结果吧."
@@ -54,7 +62,11 @@ class App extends React.Component {
             url: '/api/start'
         }).then(async response => {
             if (response.data.code === 0) {
-                await this.setHistoryItem(response.data.data, this.state.current);
+                let data = {
+                    guess: response.data.data,
+                    full: -1
+                }
+                await this.setHistoryItem(data, this.state.current);
                 this.setState({sessionOn: true})
             } else {
                 this.setState({message: `发生了错误: ${response.data.message}.`});

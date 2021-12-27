@@ -24,7 +24,7 @@ export default function Guess(props) {
         }
 
         let data = {
-            guess: props.data,
+            guess: props.data.guess,
             full: full,
             half: half
         };
@@ -34,12 +34,20 @@ export default function Guess(props) {
             data: data
         }).then(response => {
             if (response.data.code === 0) {
-                props.setHistoryItem(response.data.data, props.current + 1);
+                let data = {
+                    guess: response.data.data,
+                    full: -1
+                }
+                props.setHistoryItem(data, props.current + 1);
                 props.setCurrent(props.current + 1);
                 props.setMessage("请小心地输入游戏中给出的结果吧.");
             } else if (response.data.code === 200) {
+                let data = {
+                    guess: response.data.data,
+                    full: -1
+                }
                 props.setMessage("这次一定对了!");
-                props.setHistoryItem(response.data.data, props.current + 1);
+                props.setHistoryItem(data, props.current + 1);
                 props.setCurrent(props.current + 1);
                 props.setOut(true);
             } else if (response.data.code === 500) {
@@ -59,7 +67,7 @@ export default function Guess(props) {
                 {props.index + 1}
             </div>
             <div className={'guess-main'}>
-                {props.data.map((color, key) =>
+                {props.data.guess.map((color, key) =>
                     <div key={key}
                          className={`hole ${color} ${color.length > 0 ? 'spot' : ''}`}/>)}
             </div>
