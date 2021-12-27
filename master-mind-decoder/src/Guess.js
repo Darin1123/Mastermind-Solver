@@ -36,6 +36,7 @@ export default function Guess(props) {
             if (response.data.code === 0) {
                 props.setHistoryItem(response.data.data, props.current + 1);
                 props.setCurrent(props.current + 1);
+                props.setMessage("请小心地输入游戏中给出的结果吧.");
             } else if (response.data.code === 200) {
                 props.setMessage("这次一定对了!");
                 props.setHistoryItem(response.data.data, props.current + 1);
@@ -51,8 +52,6 @@ export default function Guess(props) {
             props.setMessage(`发生了错误: ${e}`);
         })
     }
-
-    console.log(props.data);
 
     return (
         <div className={'guess'}>
@@ -186,7 +185,7 @@ function HalfMenu(props) {
     const wrapperRef = useRef(null);
     useHalfOutsideAlerter(props, wrapperRef);
 
-    let max = props.full === -1 ? 4 : (4 - props.full);
+    let max = props.full === -1 ? 4 : (props.full === 3 ? 0 : 4 - props.full);
     let options = [];
     for (let i = 0; i < max + 1; i++) {
         options.push(i);

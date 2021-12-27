@@ -1,5 +1,4 @@
 import './App.scss';
-import {useEffect, useState} from "react";
 import Guess from "./Guess";
 import axios from "axios";
 import Menu from "./Menu";

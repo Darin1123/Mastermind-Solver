@@ -8,11 +8,16 @@ export default function Menu(props) {
 
     return (
         <div className={'menu'}>
-            <IconRefresh onClick={() => setOpenReloadConfirm(true)}/>
-            {openReloadConfirm &&
-            <ReloadConfirm
-                startSession={props.startSession}
-                setOpenReloadConfirm={setOpenReloadConfirm}/>}
+            <div className={'reload'}>
+                <div className={'svg-container'}
+                     onClick={() => setOpenReloadConfirm(true)}>
+                    <IconRefresh/>
+                </div>
+                {openReloadConfirm &&
+                    <ReloadConfirm
+                        startSession={props.startSession}
+                        setOpenReloadConfirm={setOpenReloadConfirm}/>}
+            </div>
         </div>
     );
 }
