@@ -6,6 +6,9 @@
 
   .svg-container {
     background-color: rgb(45, 151, 75);
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
     padding: 20px;
     margin-top: 20px;
@@ -50,5 +53,11 @@
         border-right: 4px solid rgb(0, 61, 25);
       }
     }
+  }
+}
+
+@media only screen and (max-width: 870px) {
+  .menu {
+    margin: 20px;
   }
 }

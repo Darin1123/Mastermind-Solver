@@ -88,14 +88,36 @@
 
 @media only screen and (max-width: 870px) {
   .App {
-    overflow-y: scroll;
+    ////overflow-y: scroll;
+    //display: block;
+    //background-color: #64212e;
+    //border: 1px solid #64212e;
+    //width: calc(100% - 2px);
+
+    .bg-img {
+      //display: none;
+    }
+
+    .welcome {
+      margin: 20px;
+    }
+
+    .message {
+      margin: 20px;
+      text-align: center;
+    }
 
     .main {
       padding: 10px 10px;
+      margin: 20px;
       border-radius: 10px;
-    }
-    .guesses {
-      flex-direction: column;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .guesses {
+        flex-direction: column;
+      }
     }
   }
 }
