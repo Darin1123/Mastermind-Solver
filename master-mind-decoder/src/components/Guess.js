@@ -4,8 +4,6 @@ import {useEffect, useRef, useState} from "react";
 
 export default function Guess(props) {
 
-    // const [full, setFull] = useState(-1);
-    // const [half, setHalf] = useState(-1);
     const [openFullMenu, setOpenFullMenu] = useState(false);
     const [openHalfMenu, setOpenHalfMenu] = useState(false);
 

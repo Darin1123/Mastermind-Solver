@@ -7,14 +7,6 @@ import React from "react";
 class App extends React.Component {
     constructor(props) {
         super(props);
-        // let initialHistory = [];
-        // for (let i = 0; i < 8; i++) {
-        //     initialHistory.push({
-        //         guess: ['', '', '', ''],
-        //         full: -1,
-        //         half: -1
-        //     });
-        // }
         this.state = {
             history: [],
             COLOR_SET: ['blue', 'red', 'green', 'yellow', 'pink', 'white'],
