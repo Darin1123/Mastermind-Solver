@@ -13,7 +13,8 @@ class App extends React.Component {
             current: 0,
             sessionOn: false,
             message: "请小心地输入游戏中给出的结果吧.",
-            out: false
+            out: false,
+            option: 0
         };
     }
 
@@ -89,29 +90,28 @@ class App extends React.Component {
                         </div>
                     </div>}
 
-                {this.state.sessionOn &&
-                    <div className={'message'}>
-                        {this.state.message}
-                    </div>}
-
-                {this.state.sessionOn &&
-                    <div className={'main'}>
-                        <div className={'guesses'}>
-                            {this.state.history.map((item, key) =>
-                                <Guess key={key}
-                                       out={this.state.out}
-                                       setOut={this.setOut}
-                                       setMessage={this.setMessage}
-                                       COLOR_SET={this.state.COLOR_SET}
-                                       current={this.state.current}
-                                       data={item}
-                                       setCurrent={this.setCurrent}
-                                       setHistoryItem={this.setHistoryItem}
-                                       index={key}/>)}
+                {this.state.sessionOn && this.state.option === 0 &&
+                    <div className={'solver-main'}>
+                        <div className={'message'}>
+                            {this.state.message}
                         </div>
+                        <div className={'main'}>
+                            <div className={'guesses'}>
+                                {this.state.history.map((item, key) =>
+                                    <Guess key={key}
+                                           out={this.state.out}
+                                           setOut={this.setOut}
+                                           setMessage={this.setMessage}
+                                           COLOR_SET={this.state.COLOR_SET}
+                                           current={this.state.current}
+                                           data={item}
+                                           setCurrent={this.setCurrent}
+                                           setHistoryItem={this.setHistoryItem}
+                                           index={key}/>)}
+                            </div>
+                        </div>
+                        <Menu startSession={this.startSession}/>
                     </div>}
-                {this.state.sessionOn &&
-                    <Menu startSession={this.startSession}/>}
             </div>
         );
     }

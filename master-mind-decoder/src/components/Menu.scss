@@ -1,10 +1,13 @@
 .menu {
+  display: flex;
+  justify-content: center;
 
   .reload {
     position: relative;
   }
 
   .svg-container {
+    width: fit-content;
     background-color: rgb(45, 151, 75);
     display: flex;
     align-items: center;
